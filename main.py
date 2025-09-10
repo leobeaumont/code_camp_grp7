@@ -3,11 +3,12 @@ from commands import *
 
 
 if __name__ == "__main__":
-   parseur = create_parser()
-   args = parseur.parse_args()
-   # Création du parseur de ligne de commande
-   options = create_parser().parse_args()
    try:
+       parseur = create_parser()
+       args = parseur.parse_args()
+       # Création du parseur de ligne de commande
+       options = create_parser().parse_args()
+   
        # Lecture du fichier de commandes,s’il existe
        with open(options.file, 'r') as f:
            tasks = f.readlines()
@@ -24,3 +25,5 @@ if __name__ == "__main__":
            print("Commande inconnue")
    except FileNotFoundError:
        print(f"The file {options.file} was not found")
+   except Exception as e:
+       print(type(e))
