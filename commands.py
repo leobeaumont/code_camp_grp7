@@ -44,7 +44,10 @@ def modify_task(file, id, description):
     for line_number,line in enumerate(lines):
         alt = line.split(",")
         if int(alt[0]) == id:
-            lines[line_number] = f"{alt[0]},{description}\n"
+            lines[line_number] = f"{alt[0]}, {description}\n"
 
     with open(file, 'w') as f:
         f.writelines(lines)
+
+
+modify_task("list.txt", 2, "pau")
