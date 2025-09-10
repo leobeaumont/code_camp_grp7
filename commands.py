@@ -1,4 +1,5 @@
 import os.path
+from task_objects import Task
 
 def get_id(file):
     if os.path.isfile(file) == False:
@@ -7,7 +8,7 @@ def get_id(file):
         content = f.read()
     return len(content.split("\n"))
 
-def add_task(file,des):
+def add_task(file, task: Task):
     exist=os.path.isfile(file)
     with open(file, 'a') as f:
         if exist:
@@ -16,9 +17,9 @@ def add_task(file,des):
             max_id=1
 
         if exist:
-            f.write(f"\n{max_id},{des}")
+            f.write(f"\n{max_id},{task.description}")
         else:
-            f.write(f"{max_id},{des}")
+            f.write(f"{max_id},{task.description}")
 
 def remove_task(file, id):
 
