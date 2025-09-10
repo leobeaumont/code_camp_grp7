@@ -47,4 +47,3 @@ def modify_task(file, id, description):
 
     with open(file, 'w') as f:
         f.writelines(lines)
-
