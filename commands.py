@@ -47,10 +47,4 @@ def modify_task(file, id, description):
 
     with open(file, 'w') as f:
         f.writelines(lines)
-<<<<<<< HEAD
 
-
-
-add_task("list.txt", "this is a new description")
-=======
->>>>>>> f31d083f6612cfef9847f7ba95cb39910f65e4f1
