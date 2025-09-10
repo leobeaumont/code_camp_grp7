@@ -13,13 +13,13 @@ if __name__ == "__main__":
             tasks = f.readlines()
         # Exécution de la commande
         if options.command == 'add':
-            add_task(options.file, ' '.join(options.details))
+            add_task(options.file, ''.join(options.details))
         elif options.command == 'modify':
-            modify_task(options.file, options.id, ' '.join(options.details))
+            modify_task(options.file, options.id, ''.join(options.details))
         elif options.command == 'rm':
             remove_task(options.file, options.id)
         elif options.command == 'show':
-            show_tasks(tasks)
+            show_tasks(options.file)
         else:
             print("Commande inconnue")
     except FileNotFoundError:
