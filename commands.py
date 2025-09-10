@@ -5,6 +5,9 @@ def get_id(file):
         return 0
     with open(file, 'r') as f:
         content = f.read()
+        lines = f.readlines()
+    if len(lines) == 0:
+        return 0
     return max([int(line.split(",")[0]) for line in content.split("\n")])
 
 def add_task(file, description):
