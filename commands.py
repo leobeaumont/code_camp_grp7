@@ -5,7 +5,7 @@ def get_id(file):
         return 0
     with open(file, 'r') as f:
         content = f.read()
-    return len(content.split("\n"))
+    return max([int(line.split(",")[0]) for line in content.split("\n") if line])
 
 def add_task(file, description):
     exist=os.path.isfile(file)
@@ -47,7 +47,10 @@ def modify_task(file, id, description):
 
     with open(file, 'w') as f:
         f.writelines(lines)
+<<<<<<< HEAD
 
 
 
 add_task("list.txt", "this is a new description")
+=======
+>>>>>>> f31d083f6612cfef9847f7ba95cb39910f65e4f1
