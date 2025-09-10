@@ -47,6 +47,3 @@ def modify_task(file, id, description):
 
     with open(file, 'w') as f:
         f.writelines(lines)
-
-
-modify_task("list.txt", 2, "pau")
