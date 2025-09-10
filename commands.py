@@ -49,4 +49,5 @@ def modify_task(file, id, description):
         f.writelines(lines)
 
 
-modify_task("list.txt", 2, "pau")
+
+add_task("list.txt", "this is a new description")
