@@ -1,6 +1,7 @@
 from parser import *
 from commands import *
 
+
 if __name__ == "__main__":
    parseur = create_parser()
    args = parseur.parse_args()
@@ -12,14 +13,14 @@ if __name__ == "__main__":
            tasks = f.readlines()
        # Exécution de la commande
        if options.command == 'add':
-           commands.add(' '.join(options.details), options.file, tasks)
+           add_task(options.file, ' '.join(options.details))
        elif options.command == 'modify':
-           commands.modify(options.id, ' '.join(options.details), options.file, tasks)
+           modify_task(options.file, options.id, ' '.join(options.details))
        elif options.command == 'rm':
-           commands.rm(options.id, options.file, tasks)
+           remove_task(options.file, options.id)
        elif options.command == 'show':
-           commands.show(tasks)
-       else :
+           show_tasks(tasks)
+       else:
            print("Commande inconnue")
    except FileNotFoundError:
        print(f"The file {options.file} was not found")
