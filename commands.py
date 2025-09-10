@@ -1,3 +1,22 @@
+import os.path
+def get_id(file):
+    if os.path.isfile(file) == False:
+        return 0
+    with open(file, 'r') as f:
+        content = f.read()
+    return len(content.split("\n"))
+def add_task(file,des):
+    exist=os.path.isfile(file)
+    with open(file, 'a') as f:
+        if exist:
+            max_id=get_id(file)+1
+        else:
+            max_id=1
+
+        if exist:
+            f.write(f"\n{max_id},{des}")
+        else:
+            f.write(f"{max_id},{des}")
 def remove_task(file, id):
 
     with open(file, 'r') as f:
@@ -7,3 +26,4 @@ def remove_task(file, id):
         for line in file_text:
             if int(line.split(",")[0]) != id:
                 f.write(line)
+add_task('1.txt','haha')
