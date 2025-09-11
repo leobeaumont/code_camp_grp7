@@ -22,10 +22,10 @@ Vous êtes libres du choix du format du fichier, mais il est recommandé de rest
 
 Supposons que votre programme s’appelle `task` :
 
-- `task lestaches.txt add <description>`  
+- `task lestaches.txt add <description> [-o owner]`
    Ajoute au fichier `lestaches.txt` une nouvelle tâche et retourne son identifiant.
 
-- `task lestaches.txt modify id <nouvelle description>`  
+- `task lestaches.txt modify id [-d nouvelle description] [-o nouveau propiétaire]`  
    Remplace la description de la tâche d’identifiant `id` dans `lestaches.txt`. Renvoie un message d’erreur si la tâche n’est pas trouvée.
 
 - `task lestaches.txt rm id`  

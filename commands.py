@@ -49,7 +49,7 @@ def show_tasks(file):
             attr = line.strip("\n").split(",")
             print("ID: {}  |  Desc: {}  |  Owner: {}".format(attr[0], attr[1], attr[2]))
 
-def modify_task(file, id, description, owner=None):
+def modify_task(file, id, description=None, owner=None):
     with open(file, 'r') as f:
         lines = f.readlines()
 
@@ -58,7 +58,10 @@ def modify_task(file, id, description, owner=None):
         alt = line.split(",")
         if int(alt[0]) == id:
             modified = True
-            lines[line_number] = f"{alt[0]},{description},{owner}\n"
+            if description is not None:
+                lines[line_number] = f"{alt[0]},{description},{owner}\n"
+            else:
+                lines[line_number] = f"{alt[0]},{alt[1]},{owner}\n"
 
     with open(file, 'w') as f:
         f.writelines(lines)
