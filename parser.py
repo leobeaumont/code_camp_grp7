@@ -4,8 +4,8 @@ import argparse  # Permet de créer et vérifier les arguments de commande
 def create_parser():
     """
     Cette fonction crée un parseur qui connaît les commandes suivantes :
-      task <fichier> add <description...>
-      task <fichier> modify <id> <nouvelle description...>
+      task <fichier> add <description...> [owner]
+      task <fichier> modify <id> <nouvelle description...> [new owner]
       task <fichier> rm <id>
       task <fichier> show
     """

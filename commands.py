@@ -13,15 +13,15 @@ def get_id(file):
 
     return max([int(line.split(",")[0]) for line in content.split("\n")])
 
-def add_task(file, description):
+def add_task(file, description, owner=None):
     exist=os.path.isfile(file)
     id = get_id(file)
 
     with open(file, 'a') as f:
         if exist:
-            f.write(f"\n{id},{description}")
+            f.write(f"\n{id},{description},{owner}")
         else:
-            f.write(f"{id},{description}")
+            f.write(f"{id},{description},{owner}")
 
 def remove_task(file, id):
 
@@ -37,16 +37,16 @@ def show_tasks(file):
     with open(file, "r") as f:
         for line in f.readlines():
             attr = line.strip("\n").split(",")
-            print("ID: {}  |  Desc: {}".format(attr[0], attr[1]))
+            print("ID: {}  |  Desc: {}  |  Owner: {}".format(attr[0], attr[1], attr[2]))
 
-def modify_task(file, id, description):
+def modify_task(file, id, description, owner=None):
     with open(file, 'r') as f:
         lines = f.readlines()
 
     for line_number,line in enumerate(lines):
         alt = line.split(",")
         if int(alt[0]) == id:
-            lines[line_number] = f"{alt[0]},{description}\n"
+            lines[line_number] = f"{alt[0]},{description},{owner}\n"
 
     with open(file, 'w') as f:
         f.writelines(lines)
