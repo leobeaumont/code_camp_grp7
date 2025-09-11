@@ -10,7 +10,7 @@ def get_id(file):
     if len(content) == 0:
         return 0
 
-    return max([int(line.split(",")[0]) for line in content.split("\n")])
+    return max([int(line.split(",")[0]) for line in content.split("\n")])+1
 
 def add_task(file, description, owner=None):
     exist=os.path.isfile(file)
