@@ -36,8 +36,9 @@ def remove_task(file, id):
         modified = False
         for line in file_text:
             if int(line.split(",")[0]) != id:
-                modified = True
                 f.write(line)
+            else:
+                modified = True
     
     if not modified:
         print("Invalid ID: {}, nothing removed".format(id))
