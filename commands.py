@@ -47,10 +47,15 @@ def modify_task(file, id, description, owner=None):
     with open(file, 'r') as f:
         lines = f.readlines()
 
+    modified = False
     for line_number,line in enumerate(lines):
         alt = line.split(",")
         if int(alt[0]) == id:
+            modified = True
             lines[line_number] = f"{alt[0]},{description},{owner}\n"
 
     with open(file, 'w') as f:
         f.writelines(lines)
+
+    if not modified:
+        print("Invalid ID: {}, no line modified".format(id))
