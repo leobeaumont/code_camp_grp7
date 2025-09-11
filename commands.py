@@ -16,9 +16,13 @@ def add_task(file, description, owner=None):
     exist=os.path.isfile(file)
     id = get_id(file)
 
+    if exist:
+        with open(file, "r") as f:
+            content = f.read()
+
     with open(file, 'a+') as f:
         if exist:
-            if len(f.read()) != 0:
+            if len(content) != 0:
                 f.write(f"\n{id},{description},{owner}")
                 return
         f.write(f"{id},{description},{owner}")
