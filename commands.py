@@ -6,9 +6,9 @@ def get_id(file):
     
     with open(file, 'r') as f:
         content = f.read()
-        lines = f.readlines()
+        print(content)
 
-    if len(lines) == 0:
+    if len(content) == 0:
         return 0
 
     return max([int(line.split(",")[0]) for line in content.split("\n")])
@@ -17,11 +17,12 @@ def add_task(file, description, owner=None):
     exist=os.path.isfile(file)
     id = get_id(file)
 
-    with open(file, 'a') as f:
+    with open(file, 'a+') as f:
         if exist:
-            f.write(f"\n{id},{description},{owner}")
-        else:
-            f.write(f"{id},{description},{owner}")
+            if len(f.read()) != 0:
+                f.write(f"\n{id},{description},{owner}")
+                return
+        f.write(f"{id},{description},{owner}")
 
 def remove_task(file, id):
 
