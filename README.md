@@ -35,7 +35,22 @@ Supposons que votre programme s’appelle `task` :
    Affiche la liste des tâches du fichier, triées par identifiant, sous la forme suivante :
 
    ```
-   [id] description owner
+   [id] description
    ```
 
+## Extension : Propriétaire (owner)
+
+Les tâches peuvent être associées à un propriétaire grâce aux commandes suivantes :
+
+- `task lestaches.txt add <description> -o <owner>`  
+   Ajoute une nouvelle tâche avec le propriétaire spécifié.
+
+- `task lestaches.txt modify id <nouvelle description> -o <owner>`  
+   Modifie la description et/ou le propriétaire de la tâche d’identifiant `id`.
+
+Le propriétaire est affiché dans la liste des tâches sous la forme :
+
+```
+[id] description owner
+```
 
