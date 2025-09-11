@@ -58,10 +58,7 @@ def modify_task(file, id, description=None, owner=None):
         alt = line.split(",")
         if int(alt[0]) == id:
             modified = True
-            if description is not None:
-                lines[line_number] = f"{alt[0]},{description},{owner}\n"
-            else:
-                lines[line_number] = f"{alt[0]},{alt[1]},{owner}\n"
+            lines[line_number] = f"{alt[0]},{description if description is not None else alt[1]},{owner + "\n" if owner is not None else alt[2]}"
 
     with open(file, 'w') as f:
         f.writelines(lines)
