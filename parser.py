@@ -4,10 +4,10 @@ import argparse  # Permet de créer et vérifier les arguments de commande
 def create_parser():
     """
     Cette fonction crée un parseur qui connaît les commandes suivantes :
-      task.py <fichier> add <description...> [-o owner]
-      task.py <fichier> modify <id> <nouvelle description...> [-o new owner]
-      task.py <fichier> rm <id>
-      task.py <fichier> show
+      task <fichier> add <description...>
+      task <fichier> modify <id> <nouvelle description...>
+      task <fichier> rm <id>
+      task <fichier> show
     """
     parser = argparse.ArgumentParser(prog="task")  # Le programme s’appelle "task"
 
@@ -20,11 +20,13 @@ def create_parser():
     # --- add ---
     parser_add = subparsers.add_parser("add", help="Ajouter une nouvelle tâche")
     parser_add.add_argument("details", nargs="+", help="Description de la tâche")
+    parser_add.add_argument("-o", "--owner", help="Propriétaire de la tâche")  # optionnel
 
     # --- modify ---
     parser_modify = subparsers.add_parser("modify", help="Modifier une tâche")
     parser_modify.add_argument("id", type=int, help="Numéro (id) de la tâche")
     parser_modify.add_argument("details", nargs="+", help="Nouvelle description")
+    parser_modify.add_argument("-o", "--owner", help="Propriétaire de la tâche")  # optionnel
 
     # --- rm ---
     parser_rm = subparsers.add_parser("rm", help="Supprimer une tâche")
