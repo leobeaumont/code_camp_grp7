@@ -6,7 +6,6 @@ def get_id(file):
     
     with open(file, 'r') as f:
         content = f.read()
-        print(content)
 
     if len(content) == 0:
         return 0
