@@ -8,9 +8,6 @@ if __name__ == "__main__":
     # Création du parseur de ligne de commande
     options = create_parser().parse_args()
     try:
-        # Lecture du fichier de commandes,s’il existe
-        with open(options.file, 'r') as f:
-            tasks = f.readlines()
         # Exécution de la commande
         if options.command == 'add':
             add_task(options.file, ''.join(options.details))
