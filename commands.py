@@ -23,7 +23,7 @@ def add_task(file, description, owner=None):
     with open(file, 'a+') as f:
         if exist:
             if len(content) != 0:
-                f.write(f"\n{id},{description},{owner}")
+                f.write(f"\n{id + 1},{description},{owner}")
                 return
         f.write(f"{id},{description},{owner}")
 

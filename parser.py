@@ -19,7 +19,7 @@ def create_parser():
 
     # --- add ---
     parser_add = subparsers.add_parser("add", help="Ajouter une nouvelle tâche")
-    parser_add.add_argument("details", nargs="+", help="Description de la tâche")
+    parser_add.add_argument("details", nargs="+", help="Description de la tâche", type=str)
     parser_add.add_argument("-o", "--owner", help="Propriétaire de la tâche")  # optionnel
 
     # --- modify ---

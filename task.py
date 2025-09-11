@@ -10,7 +10,7 @@ if __name__ == "__main__":
     try:
         # Exécution de la commande
         if options.command == 'add':
-            add_task(options.file, options.details, options.owner)
+            add_task(options.file, options.details[0], options.owner)
         elif options.command == 'modify':
             modify_task(options.file, options.id, ''.join(options.details), options.owner)
         elif options.command == 'rm':
