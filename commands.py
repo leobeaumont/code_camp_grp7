@@ -1,5 +1,9 @@
 import os.path
 
+def log(des):
+    with open("log.txt","a") as f:
+        f.write(f"{des}\n")
+
 def get_id(file):
     if os.path.isfile(file) == False:
         return 0
@@ -18,6 +22,7 @@ def log_action(command, result, log_file="log.txt"):
         log.write(f"commande: {command} | resultat: {result}\n")
 
 def add_task(file, description, owner=None):
+    log(f"Add task to {file}, description:{description}, owner:{owner}")
     exist=os.path.isfile(file)
     id = get_id(file)
     # Journaliser la commande et le résultat exact
@@ -44,7 +49,7 @@ def add_task(file, description, owner=None):
         raise
 
 def remove_task(file, id):
-
+    log(f"Remove task from {file}")
     with open(file, 'r') as f:
         file_text = f.readlines()
 
@@ -60,6 +65,7 @@ def remove_task(file, id):
         print("Invalid ID: {}, nothing removed".format(id))
 
 def show_tasks(file):
+    log(f"Show task {file}")
     try:
         with open(file, "r", encoding="utf-8") as f:
             for line in f.readlines():
@@ -75,27 +81,19 @@ def show_tasks(file):
 
     
 def modify_task(file, id, description=None, owner=None):
-    try:
-        with open(file, 'r') as f:
-            lines = f.readlines()
+    log(f"Modify task of {file}, description:{description}, owner:{owner}")
+    with open(file, 'r') as f:
+        lines = f.readlines()
 
-        modified = False
-        for line_number,line in enumerate(lines):
-            alt = line.split(",")
-            if int(alt[0]) == id:
-                modified = True
-                lines[line_number] = f"{alt[0]},{description if description is not None else alt[1]},{owner + "\n" if owner is not None else alt[2]}"
+    modified = False
+    for line_number,line in enumerate(lines):
+        alt = line.split(",")
+        if int(alt[0]) == id:
+            modified = True
+            lines[line_number] = f"{alt[0]},{description if description is not None else alt[1]},{owner + "\n" if owner is not None else alt[2]}"
 
-        with open(file, 'w') as f:
-            f.writelines(lines)
+    with open(file, 'w') as f:
+        f.writelines(lines)
 
-        if not modified:
-            print("Invalid ID: {}, no line modified".format(id))
-            raise IndexError
-        
-        with open("log.txt", "a") as f:
-            f.write(f"Command:\nmodify file: {file}, new description: {description}, new owner: {owner}\nResult:\nSuccess\n\n")
-    except Exception as e:
-        with open("log.txt", "a") as f:
-            f.write(f"Command:\nmodify file: {file}, new description: {description}, new owner: {owner}\nResult:\n{type(e)}\n\n")
-            raise e
+    if not modified:
+        print("Invalid ID: {}, no line modified".format(id))

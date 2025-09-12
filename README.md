@@ -38,7 +38,7 @@ Supposons que votre programme s’appelle `task` :
    [id] description
    ```
 
-## Extension : Propriétaire (owner)
+## Extension 1 : Propriétaire (owner)
 
 Les tâches peuvent être associées à un propriétaire grâce aux commandes suivantes :
 
@@ -53,4 +53,42 @@ Le propriétaire est affiché dans la liste des tâches sous la forme :
 ```
 [id] description owner
 ```
+## Extension 2 : Fichier de log
 
+Chaque action effectuée par le programme doit être enregistrée dans un fichier `log.txt`. Le fichier log contient une ligne pour chaque commande exécutée, précisant l'action, le résultat et le type d'erreur le cas échéant.
+
+Exemples de lignes ajoutées au fichier `log.txt` :
+
+- Pour la commande `task lestaches.txt show` :  
+   ```
+   Action : show task, Result : Success, Type error : None
+   ```
+
+- Pour la commande `task lestaches.txt add <description> [-o owner]` :  
+   ```
+   Action : add task, Result : Success, Type error : None
+   ```
+   En cas d'échec :
+   ```
+   Action : add task, Result : Failure, Type error : <description de l'erreur>
+   ```
+
+- Pour la commande `task lestaches.txt rm id` :  
+   ```
+   Action : remove task, Result : Success, Type error : None
+   ```
+   En cas d'échec :
+   ```
+   Action : remove task, Result : Failure, Type error : Task not found
+   ```
+
+- Pour la commande `task lestaches.txt modify id [-d nouvelle description] [-o nouveau propriétaire]` :  
+   ```
+   Action : modify task, Result : Success, Type error : None
+   ```
+   En cas d'échec :
+   ```
+   Action : modify task, Result : Failure, Type error : Task not found
+   ```
+
+Chaque ligne du fichier log doit refléter précisément l'action réalisée, son résultat et le type d'erreur éventuel.
