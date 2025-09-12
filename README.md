@@ -95,4 +95,16 @@ Chaque ligne du fichier log doit refléter précisément l'action réalisée, so
 
 ## Extension 3 : Vérification de format
 
-Le logiciel réalise une vérification de conformité des fichiers créés.
+Après chaque action susceptible de modifier le fichier des tâches, le logiciel vérifie la conformité du format du fichier.
+
+- Pour chaque ligne du fichier, le format attendu est :
+  
+  ```
+  int: ID, str: description, str: owner
+  ```
+
+- Un fichier vide ou inexistant est considéré comme conforme.
+
+- Par exemple, après une commande de modification (`task lestaches.txt modify id [-d nouvelle description] [-o nouveau propriétaire]`), le programme vérifie que chaque ligne respecte ce format.
+
+- En cas de non-conformité, une erreur doit être signalée et enregistrée dans le fichier `log.txt`.
