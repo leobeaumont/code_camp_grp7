@@ -55,12 +55,15 @@ def show_tasks(file):
             for line in f.readlines():
                 attr = line.strip("\n").split(",")
                 print("ID: {}  |  Desc: {}  |  Owner: {}".format(attr[0], attr[1], attr[2]))
+                error_status = False
     except Exception as e: #catch all exceptions to print them in log
         print(f"Error reading file: {e}")
-    with open("log.txt", 'w') as f:
-        f.write("Action : show tasks ", "Result : {}\n".format("Success" if not e else "Failure"))
-        
+        error_status = True
+        error_type = type(e).__name__
+    with open("log.txt", 'a') as f:
+        f.write("Action : show tasks , Result : {}, Error Type : {}\n".format("Success" if not error_status else "Failure", error_type if error_status else "None"))
 
+    
 def modify_task(file, id, description=None, owner=None):
     log(f"Modify task of {file}, description:{description}, owner:{owner}")
     with open(file, 'r') as f:
