@@ -40,7 +40,7 @@ def add_task(file, description, owner=None):
         raise
 
 def remove_task(file, id):
-    log(f"Remove task from {file}")
+
     with open(file, 'r') as f:
         file_text = f.readlines()
 
@@ -52,6 +52,12 @@ def remove_task(file, id):
             else:
                 modified = True
     
+    with open("log.txt", 'a') as f:
+        if modified:
+            f.write(f"The rm command was execute {id}\n")
+        else:
+            f.write(f"Couldn't remove id: {id}\n")
+
     if not modified:
         print("Invalid ID: {}, nothing removed".format(id))
 
