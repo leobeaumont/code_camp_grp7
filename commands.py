@@ -60,11 +60,12 @@ def remove_task(file, id):
 
 def show_tasks(file):
     try:
+        error_status = False
+        error_type = "None"
         with open(file, "r", encoding="utf-8") as f:
             for line in f.readlines():
                 attr = line.strip("\n").split(",")
                 print("ID: {}  |  Desc: {}  |  Owner: {}".format(attr[0], attr[1], attr[2]))
-                error_status = False
     except Exception as e: #catch all exceptions to print them in log
         print(f"Error reading file: {e}")
         error_status = True
