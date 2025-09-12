@@ -59,18 +59,27 @@ def show_tasks(file):
 
     
 def modify_task(file, id, description=None, owner=None):
-    with open(file, 'r') as f:
-        lines = f.readlines()
+    try:
+        with open(file, 'r') as f:
+            lines = f.readlines()
 
-    modified = False
-    for line_number,line in enumerate(lines):
-        alt = line.split(",")
-        if int(alt[0]) == id:
-            modified = True
-            lines[line_number] = f"{alt[0]},{description if description is not None else alt[1]},{owner + "\n" if owner is not None else alt[2]}"
+        modified = False
+        for line_number,line in enumerate(lines):
+            alt = line.split(",")
+            if int(alt[0]) == id:
+                modified = True
+                lines[line_number] = f"{alt[0]},{description if description is not None else alt[1]},{owner + "\n" if owner is not None else alt[2]}"
 
-    with open(file, 'w') as f:
-        f.writelines(lines)
+        with open(file, 'w') as f:
+            f.writelines(lines)
 
-    if not modified:
-        print("Invalid ID: {}, no line modified".format(id))
+        if not modified:
+            print("Invalid ID: {}, no line modified".format(id))
+            raise IndexError
+        
+        with open("log.txt", "a") as f:
+            f.write(f"Command:\nmodify file: {file}, new description: {description}, new owner: {owner}\nResult:\nSuccess\n\n")
+    except Exception as e:
+        with open("log.txt", "a") as f:
+            f.write(f"Command:\nmodify file: {file}, new description: {description}, new owner: {owner}\nResult:\n{type(e)}\n\n")
+            raise e
