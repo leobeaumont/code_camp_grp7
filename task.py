@@ -1,6 +1,7 @@
 from parser import *
 from commands import *
 from file_integrity import *
+from file_integrity import check_integrity
 """ Programme principal pour l'application de gestion de tâches."""
 
 
@@ -13,25 +14,31 @@ if __name__ == "__main__":
         # Exécution de la commande
         # Commande add
         if options.command == 'add':
-            add_task(options.file, options.details, options.owner)
             if not check_integrity(options.file):
                 print("File integrity check failed after add operation")
                 with open("log.txt", 'a') as f:
                     f.write("File integrity check failed after add operation\n")
+            else :
+                add_task(options.file, options.details, options.owner)
+            
         # Commande modify
         elif options.command == 'modify':
-            modify_task(options.file, options.id, options.details, options.owner)
             if not check_integrity(options.file):
                 print("File integrity check failed after modify operation")
                 with open("log.txt", 'a') as f:
                     f.write("File integrity check failed after modify operation\n")
+            else :
+                modify_task(options.file, options.id, options.details, options.owner)
+            
         # Commande remove
         elif options.command == 'rm':
-            remove_task(options.file, options.id)
             if not check_integrity(options.file):
                 print("File integrity check failed after remove operation")
                 with open("log.txt", 'a') as f:
                     f.write("File integrity check failed after remove operation\n")
+            else :
+                remove_task(options.file, options.id)
+            
         # Commande show
         elif options.command == 'show':
             show_tasks(options.file)
