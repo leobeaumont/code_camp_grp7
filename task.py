@@ -14,21 +14,21 @@ if __name__ == "__main__":
         # Commande add
         if options.command == 'add':
             add_task(options.file, options.details, options.owner)
-            if not file_integrity(options.file):
+            if not check_integrity(options.file):
                 print("File integrity check failed after add operation")
                 with open("log.txt", 'a') as f:
                     f.write("File integrity check failed after add operation\n")
         # Commande modify
         elif options.command == 'modify':
             modify_task(options.file, options.id, options.details, options.owner)
-            if not file_integrity(options.file):
+            if not check_integrity(options.file):
                 print("File integrity check failed after modify operation")
                 with open("log.txt", 'a') as f:
                     f.write("File integrity check failed after modify operation\n")
         # Commande remove
         elif options.command == 'rm':
             remove_task(options.file, options.id)
-            if not file_integrity(options.file):
+            if not check_integrity(options.file):
                 print("File integrity check failed after remove operation")
                 with open("log.txt", 'a') as f:
                     f.write("File integrity check failed after remove operation\n")
