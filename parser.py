@@ -21,12 +21,14 @@ def create_parser():
   parser_add = subparsers.add_parser("add", help="Ajouter une nouvelle tâche")
   parser_add.add_argument("details", help="Description de la tâche", type=str)
   parser_add.add_argument("-o", "--owner", help="Propriétaire de la tâche")  # optionnel
+  parser_add.add_argument("-p", "--project", help="Projet de la tâche")  # optionnel
 
   # --- modify ---
   parser_modify = subparsers.add_parser("modify", help="Modifier une tâche")
   parser_modify.add_argument("id", type=int, help="Numéro (id) de la tâche")
   parser_modify.add_argument("-d", "--details", help="Nouvelle description", type=str)
   parser_modify.add_argument("-o", "--owner", help="Propriétaire de la tâche")  # optionnel
+  parser_add.add_argument("-p", "--project", help="Projet de la tâche")  # optionnel
 
   # --- rm ---
   parser_rm = subparsers.add_parser("rm", help="Supprimer une tâche")

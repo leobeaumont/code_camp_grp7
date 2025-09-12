@@ -13,7 +13,7 @@ def get_id(file):
     return max([int(line.split(",")[0]) for line in content.split("\n")])
 
 
-def add_task(file, description, owner=None):
+def add_task(file, description, owner=None, project=None):
     exist=os.path.isfile(file)
     id = get_id(file)
     try :
@@ -24,16 +24,16 @@ def add_task(file, description, owner=None):
         with open(file, 'a+') as f:
             if exist:
                 if len(content) != 0:
-                    f.write(f"\n{id + 1},{description},{owner}")
+                    f.write(f"\n{id + 1},{description},{owner},{project}")
                     return
-            f.write(f"{id},{description},{owner}")
+            f.write(f"{id},{description},{owner},{project}")
 
         with open("log.txt", "a") as f:
-            f.write(f"Command:\nadd file: {file}, description: {description}, owner: {owner}\nResult:\nSuccess\n\n")
+            f.write(f"Command:\nadd file: {file}, description: {description}, owner: {owner},project:{project},\nResult:\nSuccess\n\n")
         
     except Exception as e:
         with open("log.txt", "a") as f:
-            f.write(f"Command:\nadd file: {file}, description: {description}, owner: {owner}\nResult:\n{type(e).__name__}\n\n")
+            f.write(f"Command:\nadd file: {file}, description: {description}, owner: {owner},project:{project},\nResult:\n{type(e).__name__}\n\n")
             raise e
 
 def remove_task(file, id):
@@ -74,7 +74,7 @@ def show_tasks(file):
         f.write("Command :\n show tasks\n Result : {}\n, Error Type : {}\n".format("Success" if not error_status else "Failure", error_type if error_status else "None"))
 
     
-def modify_task(file, id, description=None, owner=None):
+def modify_task(file, id, description=None, owner=None,project=None):
     try:
         with open(file, 'r') as f:
             lines = f.readlines()
@@ -94,8 +94,8 @@ def modify_task(file, id, description=None, owner=None):
             raise IndexError
 
         with open("log.txt", "a") as f:
-            f.write(f"Command:\nmodify, file: {file}, new description: {description}, new owner: {owner}\nResult:\nSuccess\n\n")
+            f.write(f"Command:\nmodify, file: {file}, new description: {description}, new owner: {owner},new project:{project},\nResult:\nSuccess\n\n")
     except Exception as e:
         with open("log.txt", "a") as f:
-            f.write(f"Command:\nmodify, file: {file}, new description: {description}, new owner: {owner}\nResult:\n{type(e).__name__}\n\n")
+            f.write(f"Command:\nmodify, file: {file}, new description: {description}, new owner: {owner},new project:{project},\nResult:\n{type(e).__name__}\n\n")
             raise e

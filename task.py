@@ -10,9 +10,9 @@ if __name__ == "__main__":
     try:
         # Exécution de la commande
         if options.command == 'add':
-            add_task(options.file, options.details, options.owner)
+            add_task(options.file, options.details, options.owner,options.project)
         elif options.command == 'modify':
-            modify_task(options.file, options.id, options.details, options.owner)
+            modify_task(options.file, options.id, options.details, options.owner,options.project)
         elif options.command == 'rm':
             remove_task(options.file, options.id)
         elif options.command == 'show':
