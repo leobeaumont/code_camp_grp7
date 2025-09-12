@@ -1,5 +1,9 @@
 import os.path
 
+def log(des):
+    with open("log.txt","a") as f:
+        f.write(f"{des}\n")
+
 def get_id(file):
     if os.path.isfile(file) == False:
         return 0
@@ -13,6 +17,7 @@ def get_id(file):
     return max([int(line.split(",")[0]) for line in content.split("\n")])
 
 def add_task(file, description, owner=None):
+    log(f"Add task to {file}, description:{description}, owner:{owner}")
     exist=os.path.isfile(file)
     id = get_id(file)
 
@@ -28,7 +33,7 @@ def add_task(file, description, owner=None):
         f.write(f"{id},{description},{owner}")
 
 def remove_task(file, id):
-
+    log(f"Remove task from {file}")
     with open(file, 'r') as f:
         file_text = f.readlines()
 
@@ -44,6 +49,7 @@ def remove_task(file, id):
         print("Invalid ID: {}, nothing removed".format(id))
 
 def show_tasks(file):
+    log(f"Show task {file}")
     try:
         with open(file, "r", encoding="utf-8") as f:
             for line in f.readlines():
@@ -56,6 +62,7 @@ def show_tasks(file):
         
 
 def modify_task(file, id, description=None, owner=None):
+    log(f"Modify task of {file}, description:{description}, owner:{owner}")
     with open(file, 'r') as f:
         lines = f.readlines()
 
