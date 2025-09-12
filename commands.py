@@ -12,20 +12,36 @@ def get_id(file):
 
     return max([int(line.split(",")[0]) for line in content.split("\n")])
 
+def log_action(command, result, log_file="log.txt"):
+    """Ajoute une commande et son résultat dans le fichier journal"""
+    with open(log_file, "a", encoding="utf-8") as log:
+        log.write(f"commande: {command} | resultat: {result}\n")
+
 def add_task(file, description, owner=None):
     exist=os.path.isfile(file)
     id = get_id(file)
-
-    if exist:
-        with open(file, "r") as f:
-            content = f.read()
-
-    with open(file, 'a+') as f:
+    # Journaliser la commande et le résultat exact
+    command_str = f"add {description}"
+    line = f"{id},{description},{owner}"
+    try :
         if exist:
-            if len(content) != 0:
-                f.write(f"\n{id + 1},{description},{owner}")
-                return
-        f.write(f"{id},{description},{owner}")
+            with open(file, "r") as f:
+                content = f.read()
+
+        with open(file, 'a+') as f:
+            if exist:
+                if len(content) != 0:
+                    f.write(f"\n{id + 1},{description},{owner}")
+                    log_action(command_str, line)
+                    return
+            f.write(f"{id},{description},{owner}")
+            log_action(command_str, line)
+
+    except Exception as e:
+        # Journaliser l’échec
+        command_str = f"add {description}"
+        log_action(command_str, f"Échec - Erreur: {str(e)}")
+        raise
 
 def remove_task(file, id):
 
