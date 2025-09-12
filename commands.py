@@ -94,8 +94,8 @@ def modify_task(file, id, description=None, owner=None):
             raise IndexError
 
         with open("log.txt", "a") as f:
-            f.write(f"Command:\nmodify file: {file}, new description: {description}, new owner: {owner}\nResult:\nSuccess\n\n")
+            f.write(f"Command:\nmodify, file: {file}, new description: {description}, new owner: {owner}\nResult:\nSuccess\n\n")
     except Exception as e:
         with open("log.txt", "a") as f:
-            f.write(f"Command:\nmodify file: {file}, new description: {description}, new owner: {owner}\nResult:\n{type(e).__name__}\n\n")
+            f.write(f"Command:\nmodify, file: {file}, new description: {description}, new owner: {owner}\nResult:\n{type(e).__name__}\n\n")
             raise e
