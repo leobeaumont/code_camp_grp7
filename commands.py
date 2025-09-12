@@ -54,9 +54,9 @@ def remove_task(file, id):
     
     with open("log.txt", 'a') as f:
         if modified:
-            f.write(f"The rm command was execute {id}\n")
+            f.write(f"Command : Remove , Result : {id}\n")
         else:
-            f.write(f"Couldn't remove id: {id}\n")
+            f.write(f"Command : Remove , Result : Failure, Invalid ID: {id}\n")
 
     if not modified:
         print("Invalid ID: {}, nothing removed".format(id))
