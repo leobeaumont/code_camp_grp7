@@ -92,3 +92,7 @@ Exemples de lignes ajoutées au fichier `log.txt` :
    ```
 
 Chaque ligne du fichier log doit refléter précisément l'action réalisée, son résultat et le type d'erreur éventuel.
+
+## Extension 3 : Vérification de format
+
+Le logiciel réalise une vérification de conformité des fichiers créés.
