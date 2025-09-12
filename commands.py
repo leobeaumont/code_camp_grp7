@@ -1,9 +1,5 @@
 import os.path
 
-def log(des):
-    with open("log.txt","a", encoding="utf-8") as f:
-        f.write(f"{des}\n")
-
 def get_id(file):
     if os.path.isfile(file) == False:
         return 0
@@ -18,7 +14,6 @@ def get_id(file):
 
 
 def add_task(file, description, owner=None):
-    log(f"Add task to {file}, description:{description}, owner:{owner}")
     exist=os.path.isfile(file)
     id = get_id(file)
     try :
@@ -30,14 +25,16 @@ def add_task(file, description, owner=None):
             if exist:
                 if len(content) != 0:
                     f.write(f"\n{id + 1},{description},{owner}")
-                    #log_action(command_str, line)
                     return
             f.write(f"{id},{description},{owner}")
-          #  log_action(command_str, line)
 
+        with open("log.txt", "a") as f:
+            f.write(f"Command:\nadd file: {file}, description: {description}, owner: {owner}\nResult:\nSuccess\n\n")
+        
     except Exception as e:
-        log(f"add {description} renvoie un échec - Erreur: {str(e)}")
-        raise
+        with open("log.txt", "a") as f:
+            f.write(f"Command:\nadd file: {file}, description: {description}, owner: {owner}\nResult:\n{type(e).__name__}\n\n")
+            raise e
 
 def remove_task(file, id):
 
