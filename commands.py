@@ -65,7 +65,6 @@ def remove_task(file, id):
         print("Invalid ID: {}, nothing removed".format(id))
 
 def show_tasks(file):
-    log(f"Show task {file}")
     try:
         with open(file, "r", encoding="utf-8") as f:
             for line in f.readlines():
