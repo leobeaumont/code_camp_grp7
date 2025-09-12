@@ -19,7 +19,7 @@ if __name__ == "__main__":
                 with open("log.txt", 'a') as f:
                     f.write("File integrity check failed after add operation\n")
             else :
-                add_task(options.file, options.details, options.owner)
+                add_task(options.file, options.details, options.owner,options.project)
             
         # Commande modify
         elif options.command == 'modify':
@@ -28,7 +28,7 @@ if __name__ == "__main__":
                 with open("log.txt", 'a') as f:
                     f.write("File integrity check failed after modify operation\n")
             else :
-                modify_task(options.file, options.id, options.details, options.owner)
+                modify_task(options.file, options.id, options.details, options.owner,options.project)
             
         # Commande remove
         elif options.command == 'rm':
