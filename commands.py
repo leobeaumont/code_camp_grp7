@@ -54,9 +54,9 @@ def remove_task(file, id):
     
     with open("log.txt", 'a') as f:
         if modified:
-            f.write(f"Command : Remove , Result : {id}\n")
+            f.write(f"Command :\n Remove\n Result :\n {id} has been removed\n")
         else:
-            f.write(f"Command : Remove , Result : Failure, Invalid ID: {id}\n")
+            f.write(f"Command :\n Remove\n Result :\n Failure, Invalid ID: {id}\n")
 
     if not modified:
         print("Invalid ID: {}, nothing removed".format(id))
@@ -73,7 +73,7 @@ def show_tasks(file):
         error_status = True
         error_type = type(e).__name__
     with open("log.txt", 'a') as f:
-        f.write("Action : show tasks , Result : {}, Error Type : {}\n".format("Success" if not error_status else "Failure", error_type if error_status else "None"))
+        f.write("Command :\n show tasks\n Result : {}\n, Error Type : {}\n".format("Success" if not error_status else "Failure", error_type if error_status else "None"))
 
     
 def modify_task(file, id, description=None, owner=None):
