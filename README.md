@@ -2,6 +2,14 @@
 
 Le but du codecamp est la production d’un logiciel simple de gestion de tâches.
 
+## Membres du groupe
+
+- `Alvarado Paula`
+- `Beaumont Léo`
+- `Desnoyers Lucie`
+- `Kaya Rolmich`
+- `Yuan Linfeng`
+
 ## Fonctionnalités principales
 
 Le point de départ est commun à tous les groupes et consiste à réaliser les commandes suivantes :
